@@ -1107,7 +1107,7 @@ function spellSubmit() {
     quizScore++;
     fb.className = 'feedback correct';
     fb.textContent = '✅ 正确！' + q.word.word + '（' + q.word.reading + '）= ' + q.word.meaning;
-    speak(q.word.word);
+    speak(q.word.reading);
   } else {
     fb.className = 'feedback wrong';
     fb.textContent = `❌ 正确答案：${q.word.reading}（${q.word.meaning}）`;
@@ -1117,11 +1117,11 @@ function spellSubmit() {
 
 // ── Q3：听音选词 ──
 function renderQ3(q) {
-  document.getElementById('qWord').innerHTML = `<div class="q-listen-icon" onclick="speak('${q.word.word}')">🔊</div>`;
+  document.getElementById('qWord').innerHTML = `<div class="q-listen-icon" onclick="speak('${q.word.reading}')">🔊</div>`;
   document.getElementById('qMeaning').textContent = '点击喇叭收听，选出对应单词';
 
   // 自动播放
-  setTimeout(() => speak(q.word.word), 400);
+  setTimeout(() => speak(q.word.reading), 400);
 
   const options = getRandomOptions(q.word, 'word', 4);
   renderOptions(options, opt => opt.word === q.word.word,
@@ -1171,7 +1171,7 @@ function handleOptionClick(btn, correct, opt) {
     quizScore++;
     fb.className = 'feedback correct';
     fb.textContent = `✅ 正确！${q.word.word}（${q.word.reading}）= ${q.word.meaning}`;
-    speak(q.word.word);
+    speak(q.word.reading);
   } else {
     btn.classList.add('wrong');
     fb.className = 'feedback wrong';
